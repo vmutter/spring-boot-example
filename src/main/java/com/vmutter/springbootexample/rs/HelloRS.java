@@ -27,9 +27,9 @@ public class HelloRS {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@RolesAllowed("USER")
+	@RolesAllowed({ "ROLE_ADMIN" })
 	public Response hello() throws JsonProcessingException {
-		return Response.ok(om.writeValueAsString("Hello, " + sc.getUserPrincipal().getName())).build();
+		return Response.ok(om.writeValueAsString("Hello, " + sc.isUserInRole("ROLE_ADMIN"))).build();
 	}
 
 }
